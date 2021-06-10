@@ -22,7 +22,7 @@ public class VehicleModelController {
      */
     @GetMapping
     public ResponseEntity<List<VehicleModelDto>> vehicleModels(){
-        return ResponseEntity.ok(vehicleModelService.getModels());
+        return ResponseEntity.ok(vehicleModelService.getAllVehicleModels());
     }
 
     /**
@@ -31,6 +31,6 @@ public class VehicleModelController {
      */
     @PostMapping
     public ResponseEntity<VehicleModelDto> addNewModel(@RequestBody  VehicleModelDto vehicleModelDto){
-        return ResponseEntity.ok(vehicleModelService.addNewModel(vehicleModelDto));
+        return ResponseEntity.ok(vehicleModelService.addNewVehicleModel(vehicleModelDto));
     }
 }

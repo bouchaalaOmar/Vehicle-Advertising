@@ -9,12 +9,12 @@ import java.util.List;
 public interface VehicleModelService {
 
     /**
-     * Get all makes
+     * Get all vehicle models
      */
-    List<VehicleModelDto> getModels();
+    List<VehicleModelDto> getAllVehicleModels();
 
     /**
-     * Add a new make
+     * Add a new vehicle model
      */
-    VehicleModelDto addNewModel(VehicleModelDto model);
+    VehicleModelDto addNewVehicleModel(VehicleModelDto model);
 }

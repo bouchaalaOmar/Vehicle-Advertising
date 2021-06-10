@@ -28,7 +28,7 @@ public class VehicleModelServiceImpl implements VehicleModelService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<VehicleModelDto> getModels() {
+    public List<VehicleModelDto> getAllVehicleModels() {
        return vehicleModelRepository.findAll()
                 .stream()
                 .map(vehicleModel -> modelMapper.map(vehicleModel, VehicleModelDto.class))
@@ -36,7 +36,7 @@ public class VehicleModelServiceImpl implements VehicleModelService {
     }
 
     @Override
-    public VehicleModelDto addNewModel(VehicleModelDto vehicleModelDto) {
+    public VehicleModelDto addNewVehicleModel(VehicleModelDto vehicleModelDto) {
         //todo check vehicle model existence
         VehicleMake vehicleMake = vehicleMakeRepository.findById(vehicleModelDto.getMake().getId())
                 .orElseThrow(() -> new IllegalStateException(

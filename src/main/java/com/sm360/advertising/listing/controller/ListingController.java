@@ -3,8 +3,7 @@ package com.sm360.advertising.listing.controller;
 import com.sm360.advertising.listing.dto.model.ListingDto;
 import com.sm360.advertising.listing.model.listing.ListingState;
 import com.sm360.advertising.listing.service.ListingService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/listing")
+@Log4j2
 public class ListingController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ListingService.class);
+    private final String className = getClass().getName();
 
     @Autowired
     private ListingService listingService;
@@ -26,6 +26,7 @@ public class ListingController {
      */
     @PostMapping
     public ResponseEntity<ListingDto> createNewListing(@Valid @RequestBody ListingDto listing) {
+        log.info("{}:createNewListing:Init...",className);
         return ResponseEntity.ok(listingService.addNewListing(listing));
     }
 
@@ -36,7 +37,7 @@ public class ListingController {
     public ResponseEntity<ListingDto> updateListing(
             @PathVariable("listingId") Long listingId,
             @Valid @RequestBody ListingDto listingDto) {
-
+        log.info("{}:updateListing:Init...",className);
         return ResponseEntity.ok(listingService.updateListing(listingId, listingDto));
     }
 
@@ -46,6 +47,7 @@ public class ListingController {
     @GetMapping
     public ResponseEntity<List<ListingDto>> getListingByDealerAndState(@RequestParam Long dealerId,
                                                                        @RequestParam ListingState state) {
+        log.info("{}:getListingByDealerAndState:Init...",className);
         return ResponseEntity.ok(listingService.getListingByDealerByState(dealerId, state));
     }
 
@@ -55,6 +57,7 @@ public class ListingController {
     @PutMapping(path = "/publish/{listingId}")
     public ResponseEntity<ListingDto> publishListing(
             @PathVariable("listingId") Long listingId) {
+        log.info("{}:publishListing:Init...",className);
         return ResponseEntity.ok(listingService.publishListing(listingId));
     }
 
@@ -64,6 +67,7 @@ public class ListingController {
     @PutMapping(path = "/unpublish/{listingId}")
     public ResponseEntity<ListingDto> unpublishListing(
             @PathVariable("listingId") Long listingId) {
+        log.info("{}:unpublishListing:Init...",className);
         return ResponseEntity.ok(listingService.unpublishListing(listingId));
 
     }
@@ -74,6 +78,7 @@ public class ListingController {
     @PutMapping(path = "/unpublisholdest/{dealerId}")
     public ResponseEntity<ListingDto> unpublishOldestListing(
             @PathVariable("dealerId") Long dealerId){
+        log.info("{}:unpublishOldestListing:Init...",className);
         return ResponseEntity.ok(listingService.unpublishOldestListing(dealerId));
     }
 }

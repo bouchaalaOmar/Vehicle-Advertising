@@ -44,8 +44,6 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDto addNewVehicle(VehicleDto vehicleDto) {
-
-
         //check if vin is already taken
         Optional<Vehicle> vehicleOptional = vehicleRepository.findByVin(vehicleDto.getVin());
         if (vehicleOptional.isPresent()) {
